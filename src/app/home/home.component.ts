@@ -21,7 +21,7 @@ export class HomeComponent {
 
     this.api.getStations().subscribe((arr : any) => {
       this.stations = arr
-      // console.log(this.stations)
+      console.log(this.stations)
     })
 
   }
@@ -30,17 +30,21 @@ export class HomeComponent {
   to = ""
   date = ""
 
-  departureTrains : DepartureTrains[] = []
+  departureTrains? : DepartureTrains
 
   filter(){
     console.log(this.to)
     console.log(this.from)
     console.log(this.date)
     this.api.getDeparture(this.from, this.to, this.date).subscribe((deptArr : any) => {
-      this.departureTrains = deptArr
+      this.departureTrains = deptArr[0]
       console.log(this.departureTrains)
     })
   }
 
+shownVagonIndices!: {[index: number]: boolean} 
 
+toggleVagons(index: number) {
+  this.shownVagonIndices[index] = !this.shownVagonIndices[index];
+}
 }

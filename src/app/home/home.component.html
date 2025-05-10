@@ -34,15 +34,31 @@
     </section>
     <section>
 
-        <div class="trains" *ngFor="let el of departureTrains">
+        <div class="trains" *ngFor="let el of departureTrains?.trains let index = index">
             <div class="info">
                 
             </div>
             <div class="vagons">
-                <h2>{{el.destination}}</h2>
+                <h2>{{el.name}}</h2>
+                                <h2>{{el.date}}</h2>
+                                <h2>arrive : {{el.arrive}}</h2>
+                                <button (click)="toggleVagons(index)">See More</button>
+
+               <div class="randerVagons" *ngIf="shownVagonIndices[index]">
+                 <div class="seeVagons" *ngFor="let vagon of el.vagons">
+                   <p>{{vagon.trainId}}</p>
+                                 <p>{{vagon.trainNumber}}</p>
+                                               <p>{{vagon.name}}</p>
+
+                </div>  
+               </div>               
+               
             </div>
+
         </div>
 
     </section>
 
 </main>
+
+
